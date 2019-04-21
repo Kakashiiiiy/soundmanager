@@ -1,0 +1,22 @@
+#! /usr/bin/python3
+
+import os
+import sys
+import subprocess
+
+proc = subprocess.Popen('/home/bschlueter/.Scripts/audiocontNEW', stdout=subprocess.PIPE)
+tmp = proc.stdout.read()
+a = str(tmp,'utf-8')
+b = sys.argv[1]
+a = int(a)
+
+proc = subprocess.Popen('/home/bschlueter/.Scripts/audiocont1', stdout=subprocess.PIPE)
+tmp1 = proc.stdout.read()
+z = str(tmp1,'utf-8')
+z = int(z)
+if (b == "i") and (a != 100 ) :
+    os.system("pactl set-sink-volume {} +5%".format(z))
+elif b == "d":
+	os.system("pactl set-sink-volume {} -5%".format(z))
+
+
